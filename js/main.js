@@ -156,3 +156,7 @@ function getPosition() {
         }
     }
 }
+
+function maze() {
+    
+}
