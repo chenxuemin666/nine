@@ -56,16 +56,18 @@
         #assets{
             display: none;
         }
-        #prompt{
+        #canvas > #prompt{
             position: absolute;
             background: #666;
             width: 300px;
             height: 100px;
             color: #fff;
+            z-index: 5;
         }
         #dead{
             color: #fff;
-            width:200px;
+            width:415px;
+            height: 180px;
             background: #333;
         }
 
@@ -74,10 +76,28 @@
             border: 2px solid #fff;
             border-radius: 5px;
             padding: 3px 5px;
+            float: left;
             margin: 15px;
+            cursor: pointer;
         }
         #dead .red{
             color: red;
+        }
+        #speak{
+            color: #fff;
+            width: 400px;
+            height: 200px;
+        }
+        #speak-content{
+            text-indent: 2em;
+        }
+        #speak-before{
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 50px;
+            text-align: right;
+            cursor: pointer;
         }
         .mask{
             background: #333;
@@ -85,6 +105,21 @@
             width: 100%;
             height: 100%;
             opacity: 0;
+        }
+        .over-view{
+            background: #333;
+            z-index: 3;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+        .over-view p{
+            color: #fff;
+            margin-top: 200px;
+            text-align: center;
+        }
+        .over-view .new-game{
+            margin-top: 30px;
         }
         .clearfix:after{
             content:".";
@@ -117,6 +152,11 @@
             </div>
         </div>
         <div class="mask"></div>
+        <div class="over-view">
+            <p>Game Over</p>
+            <p class="new-game">点击重新开始</p>
+        </div>
+        <div id="speak"><p id="speak-content"></p><p id="speak-before">上一条</p></div>
     </div>
 </div>
 
@@ -151,9 +191,6 @@
         <p class="def">防御：<span>{{pDEF}}</span></p>
         <p class="lv">等级：<span>{{pLv}}</span></p>
     </div>
-</script>
-<script type="text/html" id="speak">
-
 </script>
 <div id="assets">
     <img id="p1" src="assets/p1.png" alt="">

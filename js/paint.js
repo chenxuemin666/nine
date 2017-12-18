@@ -6,18 +6,6 @@ var ctx = $canvas[0].getContext("2d");
 var bottom = $ground[0].getContext("2d");
 var w = mainW/10,h = mainH/10;
 $mask = $(".mask");
-ground = [
-    $("#f1")[0],
-    $("#f2")[0],
-    $("#f1")[0],
-    $("#f3")[0],
-    $("#f2")[0],
-    $("#f1")[0],
-    $("#f3")[0],
-    $("#f1")[0],
-    $("#f1")[0],
-    $("#f1")[0]
-];
 function MapInit(floor) {
     lock = true;
     $mask.show();
@@ -36,17 +24,35 @@ function MapInit(floor) {
             $mask.hide();
             lock = false;
         });
-    },1000)
+    },1000);
+    getPosition();
 }
 
 
 function update(x,y,direction) {
     ctx.clearRect(nowX*w,nowY*h,w,h);
-    map[floor][nowY][nowX] = "";
     nowX += x;
     nowY += y;
+    map[floor][nowY][nowX] = "";
     ctx.clearRect(nowX*w,nowY*h,w,h);
     ctx.drawImage(p1.imgArr[direction],nowX*w,nowY*h,w,h);
 
 }
 
+function maze() {
+    if(step--){
+        return;
+    }
+    ctx.clearRect(nowX*w-w,nowY*h-w,3*w,3*h);
+    map[floor][nowY][nowX] = "";
+    nowX += x;
+    nowY += y;
+    map[floor][nowY][nowX] = p1;
+    for(var x=0;x<3;x++){
+        for(var y=0;y<3;y++){
+            if(map[floor][x][y]){
+                ctx.drawImage(map[floor][nowY-1+y][nowX-1+x].img,y*w,x*h,w,h);
+            }
+        }
+    }
+}

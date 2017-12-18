@@ -1,6 +1,6 @@
 
 //  怪兽对象
-function Monster(id, img, ATK, DEF, HP, jingyan, money, name,  ability) {
+function Monster(id, img, ATK, DEF, HP, jingyan, money, name, ability) {
     this.id = id;
     this.ATK = ATK;
     this.DEF = DEF;
@@ -9,13 +9,11 @@ function Monster(id, img, ATK, DEF, HP, jingyan, money, name,  ability) {
     this.money = money;
     this.name = name;
     this.img = img;
-    if(typeof ability !== "undefined"){
-        ability();
-    }
+    this.ability = ability;
 }
  
 //  玩家对象
-function Player (id, img, ATK, DEF, HP, money, jingyan, imgArr, name, key ,lv ) {
+function Player (id, img, ATK, DEF, HP, money, imgArr, name, key ,lv ) {
     this.id = id || 0;
     this.img = img || imgPath;
     this.ATK = ATK || 10;
