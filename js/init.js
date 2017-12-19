@@ -7,17 +7,17 @@ for(var i=0;i<10;i++){
         map[i][j] = [];
     }
 }
-// var imgP1 = [$("#p1-left")[0],$("#p1-up")[0],$("#p1-right")[0],$("#p1-down")[0]];
-var imgP1 = [$("#p1")[0],$("#p1")[0],$("#m2")[0],$("#p1")[0]];
+var imgP1 = [$("#p1-left")[0],$("#p1-up")[0],$("#p1-right")[0],$("#p1")[0]];
+
 var ground = [
     $("#f1")[0],
-    $("#f2")[0],
+    $("#w1")[0],
+    $("#w3")[0],
+    $("#w4")[0],
+    $("#w3")[0],
     $("#f1")[0],
-    $("#f3")[0],
-    $("#f2")[0],
-    $("#f1")[0],
-    $("#f3")[0],
-    $("#f1")[0],
+    $("#w5")[0],
+    $("#w4")[0],
     $("#f1")[0],
     $("#f1")[0]
 ];
@@ -26,7 +26,7 @@ var boss1 = function () {
     $speak.show();
 
 };
-// id, img, ATK, DEF, HP, jingyan, money, name,  ability
+// id, img, ATK, DEF, HP, jingyan, money, name,  ability      怪  具体样子参照assets文件中同名图片
 var m1 = new Monster("m1",$("#m1")[0],8,6,40,20,5,"史莱姆(一级)");
 var m2 = new Monster("m2",$("#m2")[0],16,6,50,40,15,"史莱姆(二级)");
 var m3 = new Monster("m3",$("#m3")[0],24,12,70,50,25,"史莱姆(三级)");
@@ -35,21 +35,29 @@ var m5 = new Monster("m5",$("#m5")[0],36,24,110,70,45,"史莱姆(五级)");
 var m6 = new Monster("m6",$("#m6")[0],42,24,150,80,55,"史莱姆(六级)");
 var m7 = new Monster("m7",$("#m7")[0],48,32,200,90,65,"史莱姆(七级)");
 var m8 = new Monster("m8",$("#m8")[0],56,32,250,100,75,"史莱姆(八级)");
-var m11 = new Monster("m8",$("#m8")[0],8,2,40,20,5,"史莱姆",boss1);
-//id, img, ATK, DEF, HP, jingyan, money, name, speak
-var g1 = new Goods("g1",$("#g1")[0],5,1,10,10,5,"圣杯(一级)");
-var g2 = new Goods("g2",$("#g2")[0],10,5,50,20,10,"圣杯(二级)");
-var g3 = new Goods("g3",$("#g3")[0],15,10,150,30,20,"圣杯(三级)");
-var g4 = new Goods("g4",$("#g4")[0],25,15,200,50,30,"圣杯(四级)");
-var g5 = new Goods("g5",$("#g5")[0],30,20,250,80,40,"圣杯(五级)");
-var g6 = new Goods("g6",$("#g6")[0],35,25,300,120,50,"圣杯(六级)");
-var g7 = new Goods("g7",$("#g7")[0],40,30,350,150,60,"圣杯(七级)");
-var g8 = new Goods("g8",$("#g8")[0],50,40,400,180,70,"圣杯(八级)");
-var w1 = {id : "w1", img : $("#f2")[0]};
-var w2 = {id : "w2", img : $("#f3")[0]};
-var up = {id : "up", img : $("#f2")[0]};
-var dn = {id : "dn", img : $("#f2")[0]};
-var yp = {id : "yp", img : $("#win"[0])};
+var m9 = new Monster("m8",$("#m8")[0],8,2,40,20,5,"史莱姆",boss1);
+//id, img, ATK, DEF, HP, jingyan, money, name, speak     可以加成负状态
+var g1 = new Goods("g1",$("#g1")[0],5,1,10,10,5,"圣杯(一级)");      //  绿水壶
+var g2 = new Goods("g2",$("#g2")[0],10,5,50,20,10,"圣杯(二级)");    //  圣杯
+var g3 = new Goods("g3",$("#g3")[0],15,10,150,30,20,"圣杯(三级)");  //  紫壶
+var g4 = new Goods("g4",$("#g4")[0],25,15,200,50,30,"圣杯(四级)");  //  高脚圣杯 比圣杯丑
+var g5 = new Goods("g5",$("#g5")[0],30,20,250,80,40,"圣杯(五级)");  //  里面汤好像很有魔力的黑水壶
+var g6 = new Goods("g6",$("#g6")[0],35,25,300,120,50,"圣杯(六级)");         //衣服初级
+var g7 = new Goods("g7",$("#g7")[0],40,30,350,150,60,"圣杯(七级)");         //衣服中级
+var g8 = new Goods("g8",$("#g8")[0],50,40,400,180,70,"圣杯(八级)");         //衣服高级
+var g9 = new Goods("g9",$("#g9")[0],50,40,400,180,70,"圣杯(八级)");         //武器初级
+var gA = new Goods("g10",$("#g10")[0],50,40,400,180,70,"圣杯(八级)");      //武器中级
+var gB = new Goods("g11",$("#g11")[0],50,40,400,180,70,"圣杯(八级)");      //武器高级
+var w1 = {id : "w1", img : $("#w1")[0]};    //黄墙
+var w2 = {id : "w2", img : $("#w2")[0]};    //灰墙
+var w3 = {id : "w2", img : $("#w3")[0]};    //蓝墙
+var w4 = {id : "w2", img : $("#w4")[0]};    //岩浆
+var w5 = {id : "w2", img : $("#w5")[0]};    //草地
+var up = {id : "up", img : $("#up")[0]};     // 上楼
+var dn = {id : "dn", img : $("#up")[0]};     // 下楼
+var rd = {id : "rd", img : $("#rd")[0]};     // 传送门（1-10层）
+var st = {id : "st", img : $("#st")[0]};
+// var yp = {id : "yp", img : $("#win"[0])};
 function init() {
     //  id, img, ATK, DEF, HP, money, imgArr, name, key ,lv
     p1 = new Player("p1",$("#p1")[0],10,2,200,0,imgP1,"勇士",0);
@@ -190,5 +198,5 @@ function init() {
     ];
     MapInit(floor);
     statusUp();
-
+    $bgm.play();
 }

@@ -71,7 +71,7 @@
             background: #333;
         }
 
-        #dead .button div{
+        .button div{
             text-align: center;
             border: 2px solid #fff;
             border-radius: 5px;
@@ -80,10 +80,10 @@
             margin: 15px;
             cursor: pointer;
         }
-        #dead .red{
+        .red{
             color: red;
         }
-        #speak{
+        #speak,#store{
             color: #fff;
             width: 400px;
             height: 200px;
@@ -157,6 +157,15 @@
             <p class="new-game">点击重新开始</p>
         </div>
         <div id="speak"><p id="speak-content"></p><p id="speak-before">上一条</p></div>
+        <div id="store">
+            <p>勇士你已经进入商店了，<span class="red">但需要花费一些金币来做一下交易</span>，现在你可以选择：</p>
+            <div class="button">
+                <div id="choose1">攻击力加持+50(需要花费100) </div>
+                <div id="choose2">防御力加持+50(需要花费150) </div>
+                <div id="choose3">生命力加持+200(需要花费30)</div>
+                <div id="close">我不买了，太贵了。</div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -192,6 +201,9 @@
         <p class="lv">等级：<span>{{pLv}}</span></p>
     </div>
 </script>
+
+
+
 <div id="assets">
     <img id="p1" src="assets/p1.png" alt="">
     <img id="m1" src="assets/m1.png" alt="">
@@ -203,12 +215,12 @@
     <img id="m7" src="assets/m7.png" alt="">
     <img id="m8" src="assets/m8.png" alt="">
     <img id="m9" src="assets/m9.png" alt="">
-    <img id="m10" src="assets/m10.png" alt="">
-    <img id="m11" src="assets/m11.png" alt="">
-    <img id="m12" src="assets/m12.png" alt="">
-    <img id="m13" src="assets/m13.png" alt="">
-    <img id="m14" src="assets/m14.png" alt="">
-    <img id="m15" src="assets/m15.png" alt="">
+    <!--<img id="m10" src="assets/m10.png" alt="">-->
+    <!--<img id="m11" src="assets/m11.png" alt="">-->
+    <!--<img id="m12" src="assets/m12.png" alt="">-->
+    <!--<img id="m13" src="assets/m13.png" alt="">-->
+    <!--<img id="m14" src="assets/m14.png" alt="">-->
+    <!--<img id="m15" src="assets/m15.png" alt="">-->
     <img id="g1" src="assets/g1.png" alt="">
     <img id="g2" src="assets/g2.png" alt="">
     <img id="g3" src="assets/g3.png" alt="">
@@ -218,14 +230,20 @@
     <img id="g7" src="assets/g7.png" alt="">
     <img id="g8" src="assets/g8.png" alt="">
     <img id="g9" src="assets/g9.png" alt="">
-    <img id="f1" src="assets/f1.jpg" alt="">
-    <img id="f2" src="assets/f2.jpg" alt="">
-    <img id="f3" src="assets/f3.jpg" alt="">
-    <img id="f4" src="assets/M.png" alt="">
-    <audio src="sound/bgm.MP3" loop="true"></audio>
-    <audio src="sound/floor.MP3"></audio>
-    <audio src="sound/fight.MP3" loop="true"></audio>
-    <audio src="sound/walk.MP3"></audio>
+    <img id="f1" src="assets/f1.png" alt="">
+    <!--<img id="f2" src="assets/f2.png" alt="">-->
+    <!--<img id="f3" src="assets/f3.png" alt="">-->
+    <img id="w1" src="assets/w1.png" alt="">
+    <img id="w2" src="assets/w2.png" alt="">
+    <img id="w3" src="assets/w3.png" alt="">
+    <img id="w4" src="assets/w4.png" alt="">
+    <img id="w5" src="assets/w5.png" alt="">
+    <img id="up" src="assets/up.png" alt="">
+    <img id="rd" src="assets/rd.png" alt="">
+    <audio src="sound/bgm.MP3" loop="loop" id="bgm"></audio>
+    <audio src="sound/floor.MP3" id="floor"></audio>
+    <audio src="sound/fight.MP3" loop="loop" id="fight"></audio>
+    <audio src="sound/walk.MP3" id="walk"></audio>
 </div>
 
 </body>

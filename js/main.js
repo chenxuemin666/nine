@@ -2,6 +2,11 @@ var keyup = false, keydown, lock, timeout;
 var $prompt = $("#prompt");
 var $pk = $(".pk-view");
 var $speak = $("#speak");
+var $walk = $("#walk");
+var $floor = $("#floor");
+var $fight = $("#fight");
+var $bgm = $("#bgm");
+var $store = $("#store");
 var index,talk,step;
 init();
 
@@ -11,7 +16,7 @@ $("body").on("keydown", function (e) {
         // if(!keyup){
         switch (e.keyCode) {
             case 37:
-                move(-1, 0, 0);
+                move(-1, 0, 0);      //direction  左上右下
                 break;
             case 38:
                 move(0, -1, 1);
@@ -47,6 +52,28 @@ $(".button").on("click", function (e) {
     }
     if (e.target.id === "over") {
         $(".over-view").show(800);
+    }
+});
+
+$store.on("click",function(e){
+    lock = true;
+    x = e.target;
+    if(x.id === "choose"){
+        p1.ATK+=50;
+        p1.money -= 100;
+    }
+    if(x.id ==="choose2"){
+        p1.DEF +=50;
+        p1.money -= 150;
+    }
+    if(x.id ==="choose3"){
+        p1.HP +=200;
+        p1.money -= 50;
+    }
+    statusUp();
+    if(x.id ==="close"){
+        $store.hide(200);
+        lock = false;
     }
 });
 
@@ -90,7 +117,7 @@ function move(x, y, direction) {
         return;
     }
     var a = map[floor][toY][toX];
-    walk();
+    $walk.play();
     if (!a) {
         if(floor === 11){
             once(function () {
@@ -111,26 +138,33 @@ function move(x, y, direction) {
             a.updateState();
             update(x, y, direction);
             break;
-        // case "n":                     //人物
+        // case "n":                  //人物
         //     speak();
         //     break;
         case "u":                     //上楼
             floor++;
             MapInit(floor);
-            play_floor();
+            $floor.play();
             break;
         case "d":                     //下楼
             floor--;
             MapInit(floor);
-            play_floor();
+            $floor.play();
+            break;
+        case "r":                     //下楼
+            floor = Math.floor(Math.random()*10);
+            MapInit(floor);
+            $floor.play();
+            break;
+        case "s":
+            $store.show();
             break;
     }
-
 }
 
 function pk(a, x, y, direction) {
     lock = true;
-    fight_sound();
+    $fight.play();
     var data = {
         mATK: a.ATK,
         mDEF: a.DEF,
@@ -173,9 +207,11 @@ function pk(a, x, y, direction) {
                 $prompt.hide(500);
                 lock = false;
             }, 1000);
+            $fight.pause();
         } else if (!pHP) {
             p1.HP = pHP;
             $("#dead").show(300);
+            $fight.pause();
         }
     }, 300);
 

@@ -85,4 +85,3 @@ Goods.prototype.updateState = function () {
         statusUp();
     }
 };
-
