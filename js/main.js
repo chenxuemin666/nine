@@ -2,7 +2,7 @@ var keyup = false, keydown, lock, timeout;
 var $prompt = $("#prompt");
 var $pk = $(".pk-view");
 var $speak = $("#speak");
-var index,talk;
+var index,talk,step;
 init();
 
 $("body").on("keydown", function (e) {
@@ -74,6 +74,14 @@ $("#speak-before").find("p").on('click',function () {
     },50);
 
 });
+function once(fn,context) {
+    return function () {
+        if(fn) {
+            fn.apply(context || this, arguments);
+            fn = null;
+        }
+    }
+}
 
 function move(x, y, direction) {
     var toX = nowX + x,
@@ -82,8 +90,12 @@ function move(x, y, direction) {
         return;
     }
     var a = map[floor][toY][toX];
+    walk();
     if (!a) {
         if(floor === 11){
+            once(function () {
+                step = p1.lv;
+            })();
             maze(x, y, direction);
         }else {
             update(x, y, direction);
@@ -105,10 +117,12 @@ function move(x, y, direction) {
         case "u":                     //上楼
             floor++;
             MapInit(floor);
+            play_floor();
             break;
         case "d":                     //下楼
             floor--;
             MapInit(floor);
+            play_floor();
             break;
     }
 
@@ -116,6 +130,7 @@ function move(x, y, direction) {
 
 function pk(a, x, y, direction) {
     lock = true;
+    fight_sound();
     var data = {
         mATK: a.ATK,
         mDEF: a.DEF,

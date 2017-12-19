@@ -22,7 +22,7 @@ var ground = [
     $("#f1")[0]
 ];
 var boss1 = function () {
-    talk = ["勇士你好","勇士your mother is boom"];
+    talk = ["勇士你好","勇士your mother is boom shakalaka"];
     $speak.show();
 
 };
