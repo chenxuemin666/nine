@@ -30,11 +30,20 @@ function Player (id, img, ATK, DEF, HP, money, imgArr, name, key ,lv ) {
 
 Player.prototype.sj = function () {
     while(this.jingyan>=100){
-        this.jingyan -= 100;
+        this.jingyan -= (100 + this.lv*30);
         this.lv++;
-        this.ATK += 10;
-        this.DEF += 5;
-        this.HP += 100;
+        var ATK =  5 + Math.floor(this.lv/2);
+        var DEF  3 + Math.floor(this.lv/2);
+        var HP = 50 + this.lv*10;
+        this.ATK += ATK;
+        this.DEF += DEF;
+        this.HP += HP;
+        $prompt.find("span").text("升级了！"+"攻击力提升" + ATK + "点，防御力提升" + DEF + "点，血量提升" + HP);
+        $prompt.show(400);
+        setTimeout(function () {
+            $prompt.hide(500);
+            lock = false;
+        }, 2000);
     }
     statusUp();
 };

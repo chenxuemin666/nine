@@ -152,7 +152,7 @@ function move(x, y, direction) {
             $floor.play();
             break;
         case "r":                     //下楼
-            floor = Math.floor(Math.random()*10);
+            floor = Math.floor(Math.random()*8);
             MapInit(floor);
             $floor.play();
             break;
@@ -198,18 +198,22 @@ function pk(a, x, y, direction) {
             clearInterval(pk);
             p1.money += a.money;
             p1.jingyan += a.jingyan;
+
             p1.sj();
-            a.ability && a.ability();
             $prompt.find("span").text(a.jingyan + "点经验和" + a.money + "金币！");
-            $prompt.show(200);
+            $prompt.show(400);
             update(x, y, direction);
             setTimeout(function () {
                 $prompt.hide(500);
                 lock = false;
-            }, 1000);
+            }, 2000);
             $fight.pause();
+            a.ability && a.ability();
         } else if (!pHP) {
             p1.HP = pHP;
+            $pk.html("");
+            $pk.hide();
+            clearInterval(pk);
             $("#dead").show(300);
             $fight.pause();
         }

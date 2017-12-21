@@ -13,12 +13,15 @@
             height: 520px;
             margin: 100px auto;
         }
-        #status-contain{
+        #player-panel{
             float: left;
             width: 200px;
             height: 500px;
             background: cadetblue;
             color: #fff;
+        }
+        h1{
+            text-align: center;
         }
         #canvas{
             width: 500px;
@@ -135,7 +138,10 @@
 </head>
 <body>
 <div id="main" class="clearfix">
-    <div id="status-contain"></div>
+    <div id="player-panel">
+        <h1></h1>
+        <div id="status-contain"></div>
+    </div>
     <div id="canvas">
         <canvas id="ground" width="500" height="500"></canvas>
         <canvas id="mainC" width="500" height="500"></canvas>
@@ -158,11 +164,11 @@
         </div>
         <div id="speak"><p id="speak-content"></p><p id="speak-before">上一条</p></div>
         <div id="store">
-            <p>勇士你已经进入商店了，<span class="red">但需要花费一些金币来做一下交易</span>，现在你可以选择：</p>
+            <p>勇士你好，反正你的金币也没啥用，不如给我20个，我就帮你：</p>
             <div class="button">
-                <div id="choose1">攻击力加持+50(需要花费100) </div>
-                <div id="choose2">防御力加持+50(需要花费150) </div>
-                <div id="choose3">生命力加持+200(需要花费30)</div>
+                <div id="choose1">攻击力加持+3 </div>
+                <div id="choose2">防御力加持+2</div>
+                <div id="choose3">生命力加持+50</div>
                 <div id="close">我不买了，太贵了。</div>
             </div>
         </div>
@@ -172,6 +178,7 @@
 <!-- m是怪兽 p是玩家 g是物品 w是墙 l是楼梯 -->
 
 <script type="text/html" id="status">
+    <h1></h1>
     <img src="assets/p1.png" id="gamer" alt="">
     <p class="name">名字：<span>{{name}}</span></p>
     <p class="hp">生命：<span>{{HP}}</span></p>
@@ -240,6 +247,7 @@
     <img id="w5" src="assets/w5.png" alt="">
     <img id="up" src="assets/up.png" alt="">
     <img id="rd" src="assets/rd.png" alt="">
+    <img id="st" src="assets/st.png" alt="">
     <audio src="sound/bgm.MP3" loop="loop" id="bgm"></audio>
     <audio src="sound/floor.MP3" id="floor"></audio>
     <audio src="sound/fight.MP3" loop="loop" id="fight"></audio>
